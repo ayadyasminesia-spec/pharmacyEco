@@ -1,0 +1,11 @@
+id;order_date;total_price;shipping_fee;payment_method;status;delivery_address;tracking_number
+1;2025-12-20T14:38:37;4789.27;27558.47;CASH_ON_DELIVERY;DELIVERED;../fake-data/blob/hipster.txt;à défaut de demain
+2;2025-12-20T03:56:47;30829.53;22730.73;CIB;RETURNED;../fake-data/blob/hipster.txt;ainsi
+3;2025-12-20T19:49:54;13658.85;17542.98;CASH_ON_DELIVERY;RETURNED;../fake-data/blob/hipster.txt;songer
+4;2025-12-20T04:48:20;26786.69;13273.57;CASH_ON_DELIVERY;RETURNED;../fake-data/blob/hipster.txt;bzzz
+5;2025-12-20T05:53:13;11760.82;2551.36;CIB;PAID;../fake-data/blob/hipster.txt;ça concurrence
+6;2025-12-20T03:18:28;31902.59;6312.87;CASH_ON_DELIVERY;CONFIRMED;../fake-data/blob/hipster.txt;juriste
+7;2025-12-20T14:31:30;12344.39;8991.58;CASH_ON_DELIVERY;PENDING;../fake-data/blob/hipster.txt;toc-toc aux environs de cot cot
+8;2025-12-19T22:01:20;3199.11;25715.11;CIB;PENDING;../fake-data/blob/hipster.txt;lorsque aux alentours de
+9;2025-12-20T17:09:18;15904.19;9601.8;CIB;DELIVERED;../fake-data/blob/hipster.txt;à côté de badaboum oups
+10;2025-12-20T16:33:17;10606.57;20449.18;EDAHABIA;PENDING;../fake-data/blob/hipster.txt;cocorico

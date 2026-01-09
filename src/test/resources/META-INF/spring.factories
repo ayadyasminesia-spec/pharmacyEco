@@ -1,0 +1,3 @@
+org.springframework.test.context.ContextCustomizerFactory = \
+    com.ayadyasmine.pharmacyecom.config.\
+    SqlTestContainersSpringContextCustomizerFactory

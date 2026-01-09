@@ -1,0 +1,3 @@
+redo the setup:
+make a docker-compose.yml file (includes one service postgresql):
+run the project:

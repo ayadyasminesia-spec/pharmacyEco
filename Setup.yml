@@ -1,0 +1,43 @@
+Installations:
+  Java: 
+    description: ivan
+
+  Jhipster: JHipster est un générateur automatique d’applications qui crée pour toi une application complète Spring Boot (backend) + un client frontend (Angular, React, Vue).
+                  Il fait gagner des semaines de travail.
+
+  Npm: Node.js est un environnement qui permet d’exécuter du JavaScript en dehors du navigateur, par exemple pour créer des serveurs, des outils ou des applications backend.
+                  npm (Node Package Manager) est le gestionnaire de paquets de Node.js : il sert à installer, mettre à jour et gérer des bibliothèques ou outils JavaScript.
+
+  Intellij: IDE
+
+  DBeaver: Universal database manager
+
+  git-gitkraken: Version control: Git est un système de gestion de version qui permet d’enregistrer l’historique d’un projet, de suivre les modifications, de collaborer à plusieurs et de revenir en arrière si besoin.
+                  GitKraken est une application graphique (GUI) qui facilite l’utilisation de Git sans avoir à taper des commandes.
+
+  Docker: Docker est un outil qui permet d’exécuter des applications dans des containers, c’est-à-dire des environnements légers, isolés et identiques sur n’importe quelle machine.
+
+
+Jhipster setup:
+  baseName: pharmacyEcom
+  applicationType: monolithic
+  java:
+    detectedVersion: "25.0.1 LTS"
+    note: "Recommended versions are 17, 21 or 24"
+  packageName: com.ayadyasmine.pharmacyecom
+  buildTool: maven
+  reactive: false
+  authenticationType: jwt
+  testingFrameworks: []
+  databaseType: sql
+  productionDatabase: postgresql
+  developmentDatabase: postgresql
+  cacheProvider: hazelcast
+  hibernate2ndLevelCache: true
+  otherTechnologies: []
+  clientFramework: none
+  internationalizationEnabled: true
+  nativeLanguage: fr
+  additionalLanguages:
+    - en
+

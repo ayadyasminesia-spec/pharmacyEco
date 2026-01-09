@@ -1,0 +1,190 @@
+// =========================
+// ENUMS
+// =========================
+
+enum OrderStatus {
+    PENDING, CONFIRMED, PAID, SHIPPED, DELIVERED, CANCELLED, RETURNED
+}
+
+enum PaymentMethod {
+    CASH_ON_DELIVERY, CIB, EDAHABIA
+}
+
+// =========================
+// CORE ENTITIES
+// =========================
+
+entity Product {
+    name String required
+    slug String required unique
+    description TextBlob
+    composition TextBlob
+    usageAdvice TextBlob
+    price BigDecimal required min(0)
+    oldPrice BigDecimal min(0)
+    stock Integer required min(0)
+    sku String unique
+    active Boolean
+    createdAt Instant
+    updatedAt Instant
+    metaTitle String maxlength(70)
+    metaDescription String maxlength(160)
+    viewsCount Long // Pour les analytics (ajustement pro)
+}
+
+entity ProductImage {
+    imageUri String required
+    position Integer
+}
+
+entity ProductVariant {
+    label String required
+    price BigDecimal required min(0)
+    stock Integer required min(0)
+    sku String
+}
+
+entity Category {
+    name String required
+    slug String required unique
+    description String
+    active Boolean
+}
+
+entity Brand {
+    name String required
+    slug String required unique
+    description String
+    logoUri String
+    website String
+    active Boolean
+}
+
+// =========================
+// CUSTOMER & ADDRESS
+// =========================
+
+entity Customer {
+    phone String required
+    createdAt Instant
+}
+
+entity Address {
+    fullName String required
+    phone String required
+    wilaya String required
+    city String required
+    addressLine String required
+    isDefault Boolean
+}
+
+// =========================
+// CART & ORDER
+// =========================
+
+entity Cart {
+    createdAt Instant
+    updatedAt Instant // Pour suivre l'abandon de panier
+    active Boolean    // Savoir si le panier est en cours ou transformé en commande
+}
+
+entity CartItem {
+    quantity Integer required min(1)
+}
+
+entity Order {
+    orderDate Instant required
+    totalPrice BigDecimal required
+    shippingFee BigDecimal
+    paymentMethod PaymentMethod required
+    status OrderStatus required
+    deliveryAddress TextBlob required
+    trackingNumber String // Pour le suivi colis
+}
+
+// Pour savoir EXACTEMENT quand une commande a changé de statut (Audit Pro)
+entity OrderStatusHistory {
+    status OrderStatus required
+    changedAt Instant required
+    notes String
+}
+
+entity OrderItem {
+    quantity Integer required min(1)
+    unitPrice BigDecimal required
+}
+
+// =========================
+// PROMOTIONS, REVIEWS & CMS
+// =========================
+
+entity Promotion {
+    title String required
+    discountPercent Integer min(1) max(90)
+    startDate Instant
+    endDate Instant
+    active Boolean
+}
+
+entity Review {
+    rating Integer required min(1) max(5)
+    comment String
+    createdAt Instant
+}
+
+entity Article {
+    title String required
+    slug String required unique
+    content TextBlob
+    createdAt Instant
+    active Boolean
+}
+
+// =========================
+// RELATIONSHIPS
+// =========================
+
+relationship ManyToOne {
+    Product{category(name)} to Category
+    Product{brand(name)} to Brand
+    ProductVariant{product(name)} to Product
+    ProductImage{product(name)} to Product
+    Review{product(name)} to Product
+
+    CartItem{variant} to ProductVariant
+    CartItem{product(name)} to Product
+
+    OrderItem{variant} to ProductVariant
+    OrderItem{product(name)} to Product
+
+    Category{parent(name)} to Category
+
+    // Lien historique de statut
+    OrderStatusHistory{order} to Order{statusHistory}
+}
+
+relationship OneToOne {
+    Customer{user(login)} to User with builtInEntity
+    Customer{cart} to Cart{customer}
+}
+
+relationship OneToMany {
+    Customer{addresses} to Address{customer}
+    Customer{orders} to Order{customer}
+    Customer{reviews} to Review{customer}
+    Cart{items} to CartItem{cart}
+    Order{items} to OrderItem{order}
+}
+
+relationship ManyToMany {
+    Promotion{products(name)} to Product{promotions(title)}
+}
+
+// =========================
+// OPTIONS
+// =========================
+
+paginate Product, Category, Brand, Order, Article, Review with pagination
+service all with serviceClass
+dto all with mapstruct
+filter Product, Order, Category, Brand, Review
