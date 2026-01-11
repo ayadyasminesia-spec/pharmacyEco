@@ -1,8 +1,9 @@
-Too much log pollution: pending
-run clean install: pending
-Image BlobStorage -> File System: pending
-Public endpoints?: pending
-Race condition in stock management: pending
+Image BlobStorage -> File System: Yasmine
+Public endpoints?: pending (securityConfiguration.java)
+Email notifications for orders pour l'admin: pending
+
+# Race condition in stock management: pending
 Go through workflows and identify missing endpoints: pending
-Email notifications for orders: pending
+Too much log pollution: Oussama
+run clean install: pending
 Admin dashboard?: pending
